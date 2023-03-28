@@ -7,6 +7,7 @@ import {
   useWindowDimensions,
   KeyboardAvoidingView,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Colors from "../constants/colors";
@@ -77,7 +78,7 @@ function StartGameScreen({ onPickNumber }) {
 
 export default StartGameScreen;
 
-// const deviceHeight = Dimensions.get("window").height;
+const deviceHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   screen: {
