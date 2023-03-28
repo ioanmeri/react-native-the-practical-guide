@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   StyleSheet,
+  Platform,
   useWindowDimensions,
 } from "react-native";
 import PrimaryButton from "../components/ui/PrimaryButton";
@@ -68,7 +69,6 @@ const styles = StyleSheet.create({
     // width: deviceWidth < 380 ? 150 : 300,
     // height: deviceWidth < 380 ? 150 : 300,
     // borderRadius: deviceWidth < 380 ? 75 : 150,
-    borderWidth: 3,
     borderColor: Colors.primary800,
     overflow: "hidden",
     margin: 36,
