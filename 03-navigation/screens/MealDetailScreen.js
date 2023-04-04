@@ -1,9 +1,32 @@
-import { Text } from "react-native";
+import { Text, Image, View } from "react-native";
+import MealDetails from "../components/MealDetails";
+
+import { MEALS } from "../data/dummy-data";
 
 function MealDetailScreen({ route }) {
   const mealId = route.params.mealId;
 
-  return <Text>This is the Meal Detail Screen ({mealId})</Text>;
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
+  return (
+    <View>
+      <Image source={{ uri: selectedMeal.imageUrl }} />
+      <Text>{selectedMeal.title}</Text>
+      <MealDetails
+        duration={selectedMeal.duration}
+        complexity={selectedMeal.affordability}
+        affordability={selectedMeal.affordability}
+      />
+      <Text>Ingredients</Text>
+      {selectedMeal.ingredients.map((ingredient) => (
+        <Text key={ingredient}>{ingredient}</Text>
+      ))}
+      <Text>Steps</Text>
+      {selectedMeal.ingredients.map((step) => (
+        <Text key={step}>{step}</Text>
+      ))}
+    </View>
+  );
 }
 
 export default MealDetailScreen;
