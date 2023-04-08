@@ -7,6 +7,7 @@ import {
   Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import MealDetails from "../components/MealDetails";
 
 function MealItem({
   id,
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowColor: "black",
     shadowOpacity: 0.35,
-    shadowOffset: { width: 0, height2 },
+    shadowOffset: { width: 0, height: 2 },
     shadowRadius: 16,
     overflow: Platform.OS === "android" ? "hidden" : "visible",
   },
