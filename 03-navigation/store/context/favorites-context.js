@@ -1,5 +1,4 @@
-import { createContext } from "react";
-import { useState } from "react/cjs/react.production.min";
+import { createContext, useState } from "react";
 
 export const FavoritesContext = createContext({
   ids: [],
