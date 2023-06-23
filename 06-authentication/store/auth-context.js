@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-export const AuthContent = createContext({
+export const AuthContext = createContext({
   token: "",
   isAuthenticated: false,
   authenticate: (token) => {},
@@ -26,9 +26,9 @@ function AuthContextProvider() {
   };
 
   return (
-    <AuthContent.AuthContextProvider value={value}>
+    <AuthContext.AuthContextProvider value={value}>
       {children}
-    </AuthContent.AuthContextProvider>
+    </AuthContext.AuthContextProvider>
   );
 }
 

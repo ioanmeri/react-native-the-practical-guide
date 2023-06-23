@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import AuthContent from "../components/Auth/AuthContent";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import { createUser } from "../util/auth";
-import AuthContext from "../store/auth-context";
+import { AuthContext } from "../store/auth-context";
 
 function SignupScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -19,8 +19,8 @@ function SignupScreen() {
         "Authentication failed",
         "Could not create user, please check your input and try again later"
       );
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {
