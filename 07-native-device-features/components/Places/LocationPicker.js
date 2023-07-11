@@ -5,7 +5,6 @@ import {
   PermissionStatus,
 } from "expo-location";
 import { useState, useEffect } from "react";
-
 import { Colors } from "../../constants/colors";
 import OutlinedButton from "../UI/OutlinedButton";
 import { getMapPreview } from "../../util/location";
@@ -91,10 +90,10 @@ function LocationPicker() {
       <View style={styles.mapPreview}>{locationPreview}</View>
       <View style={styles.actions}>
         <OutlinedButton icon="location" onPress={getLocationHandler}>
-          Locate User
+          {`Locate User`}
         </OutlinedButton>
         <OutlinedButton icon="map" onPress={pickOnMapHandler}>
-          Pick on Map
+          {`Pick on Map`}
         </OutlinedButton>
       </View>
     </View>
