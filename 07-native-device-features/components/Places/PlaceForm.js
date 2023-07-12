@@ -4,6 +4,7 @@ import ImagePicker from "./ImagePicker";
 import LocationPicker from "./LocationPicker";
 import Button from "../UI/Button";
 import { useCallback } from "react";
+import { Place } from "../../models/place";
 
 function PlaceForm() {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -22,7 +23,9 @@ function PlaceForm() {
     setPickedLocation(location);
   }, []);
 
-  function savePlaceHandler() {
+  function savePlaceHandler({ onCreatePlace }) {
+    const placeData = new Place(enteredTitle, selectedImage, pickedLocation);
+    onCreatePlace(placeData);
     console.log(enteredTitle);
     console.log(selectedImage);
     console.log(pickedLocation);
