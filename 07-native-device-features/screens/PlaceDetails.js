@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ScrollView, Image } from "react-native";
 import OutlinedButton from "../components/UI/OutlinedButton";
 import { Colors } from "../constants/colors";
-import {} from "react/cjs/react.production.min";
 import { fetchPlaceDetails } from "../util/database";
 
 function PlaceDetails({ route, navigation }) {
@@ -13,7 +12,6 @@ function PlaceDetails({ route, navigation }) {
   const selectedPlaceId = route.params.placeId;
 
   useEffect(() => {
-    // use selectedPlaceId to fetch data for a single place
     async function loadPlaceData() {
       const place = await fetchPlaceDetails(selectedPlaceId);
       setFetchedPlace(place);
