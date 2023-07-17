@@ -30,7 +30,9 @@ From Development to Production,
 
 ## Example
 
-1. Use of **Expo Application Services** feature: **Expo EAS**
+1. Use of **Expo Application Services** Documentation: **Expo EAS**
+
+---
 
 2. Configure App Name and Versions: `app.json`
 
@@ -52,8 +54,32 @@ Also there are iOS and android specific versions:
 ios.buildNumber: "1.0.0"
 ```
 
-**android version**
+**Android version**
 
 ```
 android.versionCode: 1
 ```
+
+---
+
+3. Environment variables
+
+https://docs.expo.dev/build-reference/variables/
+
+**.env**
+
+```
+EXPO_PUBLIC_API_URL=http://api.local
+```
+
+---
+
+4. Icons & Splash Screen
+
+**assets > icon.png**
+
+and
+
+**assets > splash.png**
+
+multiple versions and multiple sized needed for icons & splash screen, but **expo** builds those icons for you.
