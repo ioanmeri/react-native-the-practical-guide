@@ -163,3 +163,118 @@ eas build
 You can submit the app using the EAS submit instead of uploading it manually.
 
 ---
+
+## EAS for iOS
+
+1. Need to tweek the `eas.json` file
+
+```
+"build.preview.ios.simulator": true
+```
+
+2. Build the project for simulator
+
+```
+eas build -p ios --profile preview
+```
+
+3. Specify iOS bundle identifier
+
+```
+com.academind.myrecipebook
+```
+
+this is uploaded to the EAS servers so that the build can be produced
+
+Follow the link provided for the zip file (tar.gz)
+
+Extract it and execute it on a simulator (works on macOS device to run iOS simulators)
+
+4. Generate a production build
+
+An Apple Developer Program membership is required (costs $99)
+
+```
+eas build --platform ios
+```
+
+Do you want to log in to your Apple account? n for no
+
+4. 1. Generate Certificates
+
+You will need to generate some certificates and files that are needed as part of the build process. You can do that from inside the Apple Developer web page (after logging in).
+
+After signing in to **Apple Developer** account, create:
+
+- iOS Distribution Certificate
+
+  - upload the created certificate
+  - download the certificate file
+  - can be part of the project, but **NEVER** is source control
+  - create folder `certs/ios` and drag the file `ios_distribution.cer`
+  - add this folder to `.gitignore`
+
+- Provisioning Profile
+  - first need to go to **App Store Connect**, create new apps to link to profiler
+  - Add a new App Apps of Store connect
+  - Go back to certificates pages and register an **App ID**, you want to use the bundle ID, which is setup in `eas.json`
+  - Back in **App Store Connect**, create a new app and pick the bundle ID
+  - Back in Certificates and Profile, create the **App Store** Profile and Download the file
+  - Drag and drop the profile in the `certs/ios` folder
+  - Make `eas` aware of these two files
+
+```
+"build.production": {
+  "ios": {
+    "provisioningProfilePath": "certs/ios/profile.RN_Recipe_Book.mobileprovision",
+    "distributionCertificate": {
+      "path": "certs/ios/Certificates.p12",
+      "password": "DISTRIBUTION_CERTIFICATE_PASSWORD"
+    }
+  }
+}
+```
+
+we need to execute the certificate file: `ios_distribution.cer` so this get's added to **keychain**
+
+search for this certificate, go to my certificates, export this item as a p12 file
+
+this file should be added in the ios folder of the project
+
+and now you need to assign a password
+
+only possible to macOS (otherwise you should let EAS manage those profiles and certificates)
+
+5. Add a new file `credentials.json` and add that setting in there
+
+```
+{
+  "ios": {
+    "provisioningProfilePath": "certs/ios/profile.RN_Recipe_Book.mobileprovision",
+    "distributionCertificate": {
+      "path": "certs/ios/Certificates.p12",
+      "password": "DISTRIBUTION_CERTIFICATE_PASSWORD"
+    }
+  }
+}
+```
+
+and `eas.json` does not need to be changed.
+
+6. Build for iOS
+
+```
+eas build --platform ios
+```
+
+but it asks for apple certificates. To force use your local certificates, set the credentialsSource local in the `eas.json`
+
+```
+"build.production.credentialsSource": "local"
+```
+
+and run the build command again.
+
+This uploads it to EAS servers to start the build there.
+
+The output can be submitted to Apple store even manually or with EAS.
